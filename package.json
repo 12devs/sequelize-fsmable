@@ -1,0 +1,46 @@
+{
+	"name": "@bct/postgres-models",
+	"version": "1.0.2",
+	"description": "Postgres sequelize database models definitions",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"postinstall": "npm run build",
+		"build:cleanup": "rm -rf dist",
+		"build": "npm run build:cleanup && npm run compile",
+		"compile": "tsc -p .",
+		"test": "tape test/**/*.js",
+		"prettier:check": "prettier '{src,test}/**/*' --check",
+		"prettier:write": "prettier '{src,test}/**/*' --write"
+	},
+	"author": "Andrey Pankov, andrey@12devs.com",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"@babel/cli": "^7.10.1",
+		"@babel/core": "^7.10.2",
+		"@babel/plugin-proposal-class-properties": "^7.10.1",
+		"@babel/preset-env": "^7.10.2",
+		"@bct/eventable": "git+ssh://git@gitlab.com/terminalx.io/libraries/bct-eventable.git",
+		"@types/bluebird": "^3.5.32",
+		"@types/node": "^12.12.47",
+		"@types/rx": "^4.1.2",
+		"@types/uuid": "^8.0.0",
+		"@types/validator": "^13.0.0",
+		"babel-plugin-source-map-support": "^2.1.2",
+		"config": "^3.3.1",
+		"pg": "^8.2.1",
+		"reflect-metadata": "^0.1.13",
+		"sequelize": "^5.21.13",
+		"sequelize-typescript": "^1.1.0",
+		"source-map-support": "^0.5.19",
+		"typescript": "^3.9.5"
+	},
+	"devDependencies": {
+		"prettier": "^2.0.5",
+		"tape": "^5.0.1"
+	},
+	"engines": {
+		"node": ">=12"
+	},
+	"engineStrict": true
+}

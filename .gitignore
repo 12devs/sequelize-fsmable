@@ -1,0 +1,9 @@
+.idea/
+node_modules/
+_db/db.conf
+config/local.json
+_db/
+reports/
+.nyc_output
+.DS_store
+dist

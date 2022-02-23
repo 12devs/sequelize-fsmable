@@ -1,0 +1,34 @@
+stages:
+    - test
+
+cache:
+    paths:
+        - node_modules/
+
+test:
+    image: node:12-alpine
+    stage: test
+
+    services:
+        - name: postgres:12-alpine
+          alias: trading_zoo_db
+
+    variables:
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_DB: trading_zoo_db
+        POSTGRES_HOST_AUTH_METHOD: trust
+
+    before_script:
+        - apk --no-cache --virtual build-dependencies add alpine-sdk openssh python openrc postgresql-client gcompat eudev-dev libusb-dev linux-headers
+        - mkdir ~/.ssh &&
+          echo "$SSH_BUILD_BOT_KEY" > ~/.ssh/id_rsa &&
+          chmod 400 ~/.ssh/id_rsa &&
+          ssh-keyscan gitlab.com > ~/.ssh/known_hosts &&
+          npm ci --unsafe-perm &&
+          rm -r ~/.ssh
+
+    script:
+        - npm run prettier:check
+        - npm run build
+        - NODE_ENV=ci npm run test

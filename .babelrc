@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": { "node": "10" }
+      }
+    ]
+  ],
+
+  "plugins": [
+    ["source-map-support", { "sourceMaps": "inline" }],
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
